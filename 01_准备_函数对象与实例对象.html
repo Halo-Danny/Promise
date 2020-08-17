@@ -1,0 +1,39 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: DLZ
+ * @Date: 2020-07-31 14:20:29
+ * @LastEditors: DLZ
+ * @LastEditTime: 2020-07-31 14:39:37
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        1.函数对象与实例对象
+            函数对象：将函数作为对象使用时，简称函数对象
+            实例对象：new函数产生的对象，简称为对象
+         */
+         function Fn() {
+             //Fn是函数
+         }
+         const fn = new Fn() //Fn是构造函数  new返回的是实例对象，fn是指向实例对象的一个引用
+         console.log(Fn.prototype) //Fn本身是函数，但这里将它当做对象使用，所以Fn是函数对象
+         console.log(Fn.call({})) //看程序代码第一步要去看懂语法，第二步才去看懂功能
+         /*
+         总结
+         点的左边： 必然是对象，只是这个对象是实例对象还是函数对象的问题
+         而小括号()的左边：是函数
+
+         a()[0]()()  这里可以看出a是一个函数，这个函数的返回值是一个数组，数组的第一个元素的类型是一个函数，然后这个函数的返回值也是一个函数
+         要能根据看见的代码去推测所有的数据类型
+          */
+    </script>
+</body>
+</html>

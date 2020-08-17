@@ -1,0 +1,84 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: DLZ
+ * @Date: 2020-07-31 15:15:04
+ * @LastEditors: DLZ
+ * @LastEditTime: 2020-08-17 17:39:13
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        1.错误的类型
+           Error：所有错误的父类型
+           ReferenceError:引用的变量不存在
+           TypeError:数据类型不正确的错误
+           RangeError:数据值不在其所允许的范围内
+           SyntaxError:语法错误
+        2.错误处理
+            捕获错误：try ... catch
+            抛出错误: throw error
+        3.错误对象
+            message属性：错误相关信息
+            stack属性：函数调用栈记录信息  
+         */
+         
+         //1.常见内置错误
+        //  ReferenceError: 引用的变量不存在
+        // console.log(a)  //ReferenceError: a is not defined
+
+        // TypeError:数据类型不正确的错误,它的类型不支持你下面干的事情
+        let b = null
+        // console.log(b.xxx)  //TypeError: Cannot read property 'xxx' of null
+        // let b = {}
+        // console.log(b.xxx())  //TypeError: b.xxx is not a function
+        // b() //TypeError: b is not a function
+
+        //RangeError:数据值不在其所允许的范围内
+        function fn() {
+            fn()
+        }          //递归，没有条件接收，会一直运行，每运行一次函数会产生一个空间，通过栈来进行管理的，设计时是有最大个数的限制
+        //fn()     //RangeError:Maximum call stack size exceeded
+
+        //SyntaxError：语法错误
+        //const c = """"
+
+        let d = 3    //用字面量去定义相当于是 let d = new Number(3)
+        console.log(d.xxx)  //undefined,这里不会报错，相当于是new Number(d).xxx
+
+        /*2.错误的处理 */
+        //捕获错误：try...catch
+        try { //把有可能出问题的代码 放在try里面
+            let d ;
+            console.log(d.xxx)
+        } catch(error) {
+            console.log(error.message)  //error对象里面有两个属性一个是message，一个是stack
+            console.log(error.stack)
+        }
+        console.log("出错之后")  //能够运行
+
+        //抛出错误： throw error
+        function something() {
+            if(Date.now()%2 ===1) {
+                console.log('当前时间为奇数，可以执行任务')
+            } else { //如果时间是偶数抛出异常，由调用者来处理
+                throw new Error('当前时间为偶数无法执行任务')
+            }
+        }
+
+        //捕获处理异常
+        try {
+            something()
+        } catch(error) {
+            alert(error.message)
+        }
+    </script>
+</body>
+</html>

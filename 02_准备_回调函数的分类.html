@@ -1,0 +1,47 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: DLZ
+ * @Date: 2020-07-31 14:40:52
+ * @LastEditors: DLZ
+ * @LastEditTime: 2020-07-31 15:14:39
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        如何判断一个函数是不是回调函数：
+        1.我们自己定义的函数，
+        2.我没有亲自去调用，
+        3.最终执行了。
+         */
+         /*
+         1.同步回调：
+         理解：立即执行，完全执行完了才结束，不会放入回调队列中
+         例子：数组遍历相关的回调函数
+         2.异步回调：
+         理解：不会立即执行，会放入回调队列中将来执行
+         例子：定时器回调/ajax回调/promise的成功，失败的回调 
+          */
+
+          const arr = [1,2,3]
+          arr.forEach(item => {// 同步执行回调函数 ，等这里console完之后，才打印下面的，不会放入回调队列，只有当回调函数都执行完forEach()才执行结束
+            console.log("forEach callback()",item)
+          })
+          console.log("forEach()之后")
+
+          setTimeout(() => { //异步执行的回调函数，会放到回调队列中，在回调函数执行前setTimeout()已经执行结束了
+                console.log("setTimeout callback()")
+          },0);
+          console.log("setTimeout()之后")  //先打印的这个才打印的setTimeout里面的的东西
+
+        //   判断一个函数是同步回调还是异步，就通过在函数内写console和在函数外写console
+    </script>
+</body>
+</html>
